@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "User.h"
+#include "StudentList.h"
 using namespace std;
 
 class Menu {
@@ -11,6 +12,7 @@ private:
     string* userName;
     string* password;
     bool* userLogged;
+    StudentList* students;
     
 public:
     Menu();
@@ -32,6 +34,8 @@ public:
     void logInMenu();
     void signUpMenu();
     void userInterfaceMenu();
+
+    void studentManagementMenu();
 
     ~Menu();
 };
