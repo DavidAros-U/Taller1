@@ -1,61 +1,85 @@
 #include "Menu.h"
 
-Menu::Menu(){
-    userLogged=false;
+Menu::Menu() {
+    this->userName = new string("");
+    this->password = new string("");
+    this->userLogged = new bool(false);
 }
 
-bool Menu::verifyUserAccount(string userName, string password){
+Menu::~Menu() {
+    delete this->userName;
+    delete this->password;
+    delete this->userLogged;
+    cout << "Menu destroyed" << endl;
+}
+
+bool Menu::verifyUserAccount(string* userName, string* password) {
     return true;
 }
 
-void Menu::mainMenu(){
-    bool program=true;
-    string optionselected;
-    while(program){
+void Menu::mainMenu() {
+    bool program = true;
+    string optionSelected;
 
-            cout<<"BANNER ESCUELA DE BORRACHERIA"<<endl;
-            cout<<""<<endl;
-            cout<<"1) Log in"<<endl;
-            cout<<"2) Sign account"<<endl;
-            cout<<"0) Exit"<<endl;
-            cout<<""<<endl;
-            cin >> optionselected;
+    while (program) {
+        cout << "BANNER ESCUELA DE BORRACHERIA" << endl;
+        cout << "1) Log in" << endl;
+        cout << "2) Sign up" << endl;
+        cout << "0) Exit" << endl;
+        cin >> optionSelected;
 
-            if(optionselected=="1"){
-                logInMenu();
-            }
-            else if(optionselected=="2"){
-                //signAccountMenu();
-            }
-            else if(optionselected=="0"){
-                program=false;
-            }
-            else {
-                cout<<"Please select a valid option..."<<endl;
-            }
-            cout<<""<<endl;
+        if (optionSelected == "1") {
+            this->logInMenu();
+        } else if (optionSelected == "2") {
+            this->signUpMenu();
+        } else if (optionSelected == "0") {
+            program = false;
+        } else {
+            cout << "Please select a valid option..." << endl;
+        }
     }
 }
 
-void Menu::logInMenu(){
-    bool user;
-    string userName;
-    string password;
-    cout<<""<<endl;
-    cout<<"Enter username: "<<endl;
-    cin >> userName;
-    cout<<"Enter password: "<<endl;
-    cin >> password;
-    cout<<""<<endl;
-    //user=verifyUserAccount(userName,password);
-    user=true;
-    if(user==true){
-        //userInterface();
-        cout<<"welcome!!"<<endl;
+void Menu::logInMenu() {
+    cout << "Enter username: ";
+    cin >> *(this->userName);
+    cout << "Enter password: ";
+    cin >> *(this->password);
+
+    bool userExist = verifyUserAccount(this->userName, this->password);
+
+    if (userExist) {
+        cout << "Welcome, " << *(this->userName) << "!!" << endl;
+        *(this->userLogged) = true;
+    } else {
+        cout << "The user does not exist..." << endl;
     }
-    else{
-        cout<<"the user does not exist..."<<endl;
-        cout<<""<<endl;
+}
+
+void Menu::signUpMenu() {
+    string newUser;
+    string newPassword;
+    string confirmPassword;
+
+    cout << "Enter username: ";
+    cin >> newUser;
+    cout << "Enter password: ";
+    cin >> newPassword;
+    cout << "Repeat password: ";
+    cin >> confirmPassword;
+
+    bool userExist = false;
+
+    if (!userExist) {
+        if (newPassword == confirmPassword) {
+            *(this->userName) = newUser;
+            *(this->password) = newPassword;
+            *(this->userLogged) = true;
+            cout << "Benvenuti " << *(this->userName) << "!!!" << endl;
+        } else {
+            cout << "Passwords are not the same!!" << endl;
+        }
+    } else {
+        cout << "The user already exists!!" << endl;
     }
-    
 }
