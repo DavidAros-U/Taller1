@@ -4,6 +4,7 @@
 #include <iostream>
 #include "User.h"
 #include "StudentList.h"
+#include "CourseList.h"
 using namespace std;
 
 class Menu {
@@ -13,6 +14,7 @@ private:
     string* password;
     bool* userLogged;
     StudentList* students;
+    CourseList* courses;
     
 public:
     Menu();
@@ -36,6 +38,7 @@ public:
     void userInterfaceMenu();
 
     void studentManagementMenu();
+    void courseManagementMenu();
 };
 
 #endif
