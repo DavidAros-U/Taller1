@@ -4,15 +4,16 @@ using namespace std;
 
 class Student {
 private:
-    int id;
-    string firstName;
-    string lastName;
-    string career;
-    string admissionDate;
+    int* id;
+    string* firstName;
+    string* lastName;
+    string* career;
+    string* admissionDate;
     Student* next;
 
 public:
     Student(int id, string firstName, string lastName, string career, string admissionDate);
+    ~Student();
 
     int getId() const;
     string getFirstName() const;

@@ -22,7 +22,9 @@ void StudentList::addStudent(int id, string firstName, string lastName, string c
         head = newStudent;
     } else {
         Student* temp = head;
-        while (temp->getNext()) temp = temp->getNext();
+        while (temp->getNext()) {
+            temp = temp->getNext();
+        }
         temp->setNext(newStudent);
     }
 }
@@ -40,7 +42,9 @@ vector<Student*> StudentList::findStudentsByName(string name) {
     vector<Student*> result;
     Student* temp = head;
     while (temp) {
-        if (temp->getFirstName() == name) result.push_back(temp);
+        if (temp->getFirstName() == name) {
+            result.push_back(temp);
+        }
         temp = temp->getNext();
     }
     return result;
